@@ -4,10 +4,19 @@
       <li v-for="(comment, index) in commentsList" :key="index">
         <span class="avator"><img :src="comment.user.avatarUrl" alt=""/></span>
         <div class="comment-box">
-          <h3 class="name">{{ comment.user.nickname }} <i class="vip"></i></h3>
-          <i class="time">{{ comment.time | formatTime }}</i>
+          <div>
+            <div class="meta">
+              <h3 class="name">
+                {{ comment.user.nickname }} <i class="vip"></i>
+              </h3>
+              <i class="time">{{ comment.time | formatTime }}</i>
+            </div>
+          </div>
+          <div class="liked">
+            <span>{{ comment.likedCount }}</span>
+            <div class="praise"></div>
+          </div>
           <p class="content">{{ comment.content }}</p>
-          <div class="praise"></div>
         </div>
       </li>
     </ul>
@@ -129,17 +138,50 @@ export default {
         }
       }
       .comment-box {
+        position: relative;
         flex: 1;
         border-bottom: 1px solid #eee;
         padding: 0 10px 11px 0;
-        .name {
-          font-size: 14px;
-          color: #666;
+
+        div {
+          .meta {
+            width: 80%;
+            .name {
+              font-size: 14px;
+              color: #666;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 1;
+              overflow: hidden;
+            }
+            .time {
+              font-style: normal;
+              font-size: 12px;
+              color: #999;
+            }
+          }
         }
-        .time {
-          font-style: normal;
-          font-size: 12px;
-          color: #999;
+        .content {
+          font-size: 15px;
+        }
+        .liked {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          display: flex;
+          align-items: center;
+          span {
+            font-size: 12px;
+            color: #999;
+            padding: 0 2px;
+          }
+          .praise {
+            width: 20px;
+            height: 20px;
+            background: url('../assets/images/praise.png') no-repeat;
+            background-size: cover;
+            background-position: 0px -1px;
+          }
         }
       }
     }

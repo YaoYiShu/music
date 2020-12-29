@@ -229,8 +229,10 @@ export default {
         }
         img {
           display: inline-block;
-          width: 126px;
-          height: 126px;
+          max-width: 126px;
+          max-height: 126px;
+          min-width: 126px;
+          min-height: 126px;
         }
       }
       .con {
